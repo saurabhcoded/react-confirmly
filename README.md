@@ -19,6 +19,11 @@ npm install react-confirmly
 # or
 yarn add react-confirmly
 ```
+## Live Demo
+
+Try React Confirmly in action with our interactive demo on Stackblitz:
+
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/vitejs-vite-begdu71a?file=src%2Findex.css)
 
 ## Usage
 
