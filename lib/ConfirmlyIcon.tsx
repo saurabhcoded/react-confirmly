@@ -1,31 +1,31 @@
-import React from "react";
-import CloseIcon from "./icons/close.svg";
-import SuccessIcon from "./icons/success.svg";
-import WarningIcon from "./icons/warning.svg";
-import InfoIcon from "./icons/info.svg";
-import ConfirmIcon from "./icons/confirm.svg";
+import React from 'react';
+import CloseIcon from './icons/close.svg';
+import SuccessIcon from './icons/success.svg';
+import WarningIcon from './icons/warning.svg';
+import InfoIcon from './icons/info.svg';
+import ConfirmIcon from './icons/confirm.svg';
 
 interface ConfirmlyIconProps {
-  iconName: "close" | "success" | "warning" | "info" | "confirm";
+  iconName: 'close' | 'success' | 'warning' | 'info' | 'confirm';
 }
 
 export const ConfirmlyIcon = ({ iconName }: ConfirmlyIconProps) => {
-  let iconSrc = "";
+  let iconSrc = '';
 
   switch (iconName) {
-    case "close":
+    case 'close':
       iconSrc = CloseIcon;
       break;
-    case "success":
+    case 'success':
       iconSrc = SuccessIcon;
       break;
-    case "warning":
+    case 'warning':
       iconSrc = WarningIcon;
       break;
-    case "info":
+    case 'info':
       iconSrc = InfoIcon;
       break;
-    case "confirm":
+    case 'confirm':
       iconSrc = ConfirmIcon;
       break;
     default:

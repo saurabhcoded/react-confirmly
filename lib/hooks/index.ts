@@ -1,2 +1,2 @@
-export * from "./useConfirmly";
-export * from "./useConfirmlyContext";
+export * from './useConfirmly';
+export * from './useConfirmlyContext';

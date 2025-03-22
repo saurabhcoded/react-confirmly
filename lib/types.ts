@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
 export type ConfirmlyDialogPositions =
-  | "top-left"
-  | "top-right"
-  | "top-center"
-  | "left"
-  | "center"
-  | "right"
-  | "bottom-left"
-  | "bottom-center"
-  | "bottom-right";
+  | 'top-left'
+  | 'top-right'
+  | 'top-center'
+  | 'left'
+  | 'center'
+  | 'right'
+  | 'bottom-left'
+  | 'bottom-center'
+  | 'bottom-right';
 
 export interface SVGIconProps extends React.SVGProps<SVGSVGElement> {}
 

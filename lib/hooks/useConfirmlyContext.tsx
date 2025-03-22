@@ -1,9 +1,8 @@
-import React from "react";
-import { ModalContext } from "../ConfirmlyProvider";
+import React from 'react';
+import { ModalContext } from '../ConfirmlyProvider';
 
 export const useConfirmlyContext = () => {
-  const { modalState, setModalState, clearModals } =
-    React.useContext(ModalContext);
+  const { modalState, setModalState, clearModals } = React.useContext(ModalContext);
 
   const getModalOrder = (): number => {
     try {

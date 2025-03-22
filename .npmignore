@@ -1,0 +1,22 @@
+# Source
+src/
+
+# Config
+.eslintrc.js
+.prettierrc
+.editorconfig
+tsconfig.json
+.babelrc
+
+# Development
+.git/
+.gitignore
+.github/
+node_modules/
+coverage/
+
+# Misc
+.DS_Store
+*.log
+.env
+.env.* 

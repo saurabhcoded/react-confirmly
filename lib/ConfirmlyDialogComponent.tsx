@@ -1,28 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { isFunction, Literals } from "./helpers";
-import { ConfirmlyIcon } from "./ConfirmlyIcon";
-import "./styles/confirmly.css";
-import {
-  CustomDialogProps,
-  DialogActionConfig,
-  DialogActionInterface,
-} from "./types";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { isFunction, Literals } from './helpers';
+import { ConfirmlyIcon } from './ConfirmlyIcon';
+import './styles/confirmly.css';
+import { CustomDialogProps, DialogActionConfig, DialogActionInterface } from './types';
 
 const ConfirmlyDialogComponent = React.memo(({ modalState, setModalState }) => {
-  const ModalsArray = React.useMemo(
-    () => Object.entries(modalState),
-    [modalState]
-  );
-  console.log("ModalsArray", ModalsArray);
+  const ModalsArray = React.useMemo(() => Object.entries(modalState), [modalState]);
+  console.log('ModalsArray', ModalsArray);
   const handleClose = React.useCallback(
     (modalKey: string) => () => {
       try {
-        setModalState((prevDialogs) => {
+        setModalState(prevDialogs => {
           return Object.fromEntries(
-            Object.entries(prevDialogs).filter(
-              ([entryKey, entryVal]) => entryKey !== modalKey
-            )
+            Object.entries(prevDialogs).filter(([entryKey, entryVal]) => entryKey !== modalKey)
           );
         });
       } catch (err) {
@@ -50,21 +41,13 @@ const ConfirmlyDialogComponent = React.memo(({ modalState, setModalState }) => {
     handleCancel,
     actionConfig: DialogActionConfig = {}
   ) => {
-    const {
-      isShowCancel,
-      confirmText: _confirmText,
-      cancelText: _cancelText,
-    } = actionConfig;
+    const { isShowCancel, confirmText: _confirmText, cancelText: _cancelText } = actionConfig;
     if (Array.isArray(actionData) && actionData.length > 0) {
       return actionData.map((act, actIndex) => {
-        let actBtnProps = { className: "confirmly-btn" };
+        let actBtnProps = { className: 'confirmly-btn' };
         if (act?.htmlProps) actBtnProps = { ...actBtnProps, ...act?.htmlProps };
         return (
-          <button
-            key={actIndex}
-            {...actBtnProps}
-            onClick={handleActionClick(act, modalKey)}
-          >
+          <button key={actIndex} {...actBtnProps} onClick={handleActionClick(act, modalKey)}>
             {act?.label}
           </button>
         );
@@ -75,8 +58,8 @@ const ConfirmlyDialogComponent = React.memo(({ modalState, setModalState }) => {
         dActions = [
           <button
             className="confirmly-btn"
-            key={"action-1"}
-            onClick={(e) => {
+            key={'action-1'}
+            onClick={e => {
               if (isFunction(handleConfirm)) {
                 handleConfirm(e);
               }
@@ -89,9 +72,9 @@ const ConfirmlyDialogComponent = React.memo(({ modalState, setModalState }) => {
         if (isShowCancel)
           dActions = dActions.concat(
             <button
-              key={"action-2"}
+              key={'action-2'}
               className="confirmly-btn"
-              onClick={(e) => {
+              onClick={e => {
                 if (isFunction(handleCancel)) {
                   handleCancel(e);
                 }
@@ -103,11 +86,7 @@ const ConfirmlyDialogComponent = React.memo(({ modalState, setModalState }) => {
           );
       } else {
         dActions = [
-          <button
-            key={"action-1"}
-            className="confirmly-btn"
-            onClick={handleClose(modalKey)}
-          >
+          <button key={'action-1'} className="confirmly-btn" onClick={handleClose(modalKey)}>
             {_confirmText || Literals.ok}
           </button>,
         ];
@@ -139,7 +118,7 @@ const ConfirmlyDialogComponent = React.memo(({ modalState, setModalState }) => {
           return (
             <CustomDialog
               key={modalKey}
-              className={"confirmly-modal"}
+              className={'confirmly-modal'}
               open={true}
               title={dialogTitle}
               actions={DialogActions}
@@ -149,7 +128,7 @@ const ConfirmlyDialogComponent = React.memo(({ modalState, setModalState }) => {
               dividerBottom={modalConfig?.dividerBottom}
               dialogActionProps={{
                 style: {
-                  justifyContent: modalData?.condfig?.actionsAlign ?? "center",
+                  justifyContent: modalData?.condfig?.actionsAlign ?? 'center',
                 },
               }}
               dialogContentProps={{}}
@@ -159,22 +138,18 @@ const ConfirmlyDialogComponent = React.memo(({ modalState, setModalState }) => {
                   onClick={handleClose(modalKey)}
                   size="xs"
                 >
-                  <ConfirmlyIcon iconName={"close"} />
+                  <ConfirmlyIcon iconName={'close'} />
                 </button>
               }
             >
               {
                 <div className="confirmly-modal-content-wrapper">
-                  {modalData?.showIcon && (
-                    <span className="confirmly-modal-icon">{modalIcon}</span>
-                  )}
+                  {modalData?.showIcon && <span className="confirmly-modal-icon">{modalIcon}</span>}
                   <div className="confirmly-modal-content">
                     {IS_HTMLCONTENT ? (
                       renderHTML(modalData?.description)
                     ) : (
-                      <p className="confirmly-modal-typography">
-                        {modalData?.description}
-                      </p>
+                      <p className="confirmly-modal-typography">{modalData?.description}</p>
                     )}
                   </div>
                 </div>
@@ -194,7 +169,7 @@ function renderHTML(input: string): React.Element {
 }
 
 const CustomDialog: React.FC<CustomDialogProps> = ({
-  className = "",
+  className = '',
   open,
   title,
   actions,
@@ -214,9 +189,7 @@ const CustomDialog: React.FC<CustomDialogProps> = ({
       <div className={`confirmly-modal ${className}`}>
         <div className="modal-header">
           <h2 className="typography">{title}</h2>
-          {headerActions && (
-            <div className="header-actions">{headerActions}</div>
-          )}
+          {headerActions && <div className="header-actions">{headerActions}</div>}
         </div>
 
         {(dividers || dividerTop) && <div className="divider" />}

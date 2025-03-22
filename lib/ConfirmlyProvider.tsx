@@ -1,6 +1,6 @@
-import React from "react";
-import ConfirmlyDialogComponent from "./ConfirmlyDialogComponent";
-import { Toaster } from "react-hot-toast";
+import React from 'react';
+import ConfirmlyDialogComponent from './ConfirmlyDialogComponent';
+import { Toaster } from 'react-hot-toast';
 
 export const ModalContext = React.createContext();
 const initialState = {};
@@ -8,11 +8,11 @@ const initialState = {};
 // Reducer for Modal State
 const confirmlyReducer = (state, action) => {
   switch (action.type) {
-    case "SET_MODAL_STATE":
+    case 'SET_MODAL_STATE':
       return action.payload;
-    case "CLEAR_MODALS":
+    case 'CLEAR_MODALS':
       return {};
-    case "CLOSE_MODAL":
+    case 'CLOSE_MODAL':
       const { [action.payload]: _, ...rest } = state;
       return rest;
     default:
@@ -22,22 +22,19 @@ const confirmlyReducer = (state, action) => {
 
 // ConfirmlyProvider
 export const ConfirmlyProvider = ({ notifyProps = {}, children }) => {
-  const [modalState, dispatch] = React.useReducer(
-    confirmlyReducer,
-    initialState
-  );
+  const [modalState, dispatch] = React.useReducer(confirmlyReducer, initialState);
 
-  const setModalState = (data) => {
-    if (typeof data === "function") {
+  const setModalState = data => {
+    if (typeof data === 'function') {
       const newState = data(modalState);
-      dispatch({ type: "SET_MODAL_STATE", payload: newState });
+      dispatch({ type: 'SET_MODAL_STATE', payload: newState });
     } else {
-      dispatch({ type: "SET_MODAL_STATE", payload: data });
+      dispatch({ type: 'SET_MODAL_STATE', payload: data });
     }
   };
 
   const clearModals = () => {
-    dispatch({ type: "CLEAR_MODALS" });
+    dispatch({ type: 'CLEAR_MODALS' });
   };
 
   return (
@@ -48,10 +45,7 @@ export const ConfirmlyProvider = ({ notifyProps = {}, children }) => {
         clearModals,
       }}
     >
-      <ConfirmlyDialogComponent
-        modalState={modalState}
-        setModalState={setModalState}
-      />
+      <ConfirmlyDialogComponent modalState={modalState} setModalState={setModalState} />
       <Toaster {...notifyProps} />
       {children}
     </ModalContext.Provider>

@@ -1,5 +1,5 @@
 export function isFunction(input: unknown): input is Function {
-  return typeof input === "function";
+  return typeof input === 'function';
 }
 
 export function genUID(length: number = 8): string {
@@ -13,9 +13,9 @@ export function isArray(input: unknown): boolean {
 }
 
 export const Literals = Object.freeze({
-  ok: "Ok",
-  cancel: "Cancel",
-  confirm: "Confirm",
-  alert: "Alert",
-  info: "Info",
+  ok: 'Ok',
+  cancel: 'Cancel',
+  confirm: 'Confirm',
+  alert: 'Alert',
+  info: 'Info',
 });

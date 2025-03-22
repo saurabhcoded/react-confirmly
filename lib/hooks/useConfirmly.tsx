@@ -1,18 +1,18 @@
-import React from "react";
-import { genUID, isArray, Literals } from "../helpers";
-import { ConfirmlyIcon } from "../ConfirmlyIcon";
-import { useConfirmlyContext } from "./useConfirmlyContext";
-import { notify } from "..";
+import React from 'react';
+import { genUID, isArray, Literals } from '../helpers';
+import { ConfirmlyIcon } from '../ConfirmlyIcon';
+import { useConfirmlyContext } from './useConfirmlyContext';
+import { notify } from '..';
 
 const dialogTypeWiseIcon = {
-  confirm: <ConfirmlyIcon iconName={"confirm"} />,
-  alert: <ConfirmlyIcon iconName={"warning"} />,
-  info: <ConfirmlyIcon iconName={"info"} />,
+  confirm: <ConfirmlyIcon iconName={'confirm'} />,
+  alert: <ConfirmlyIcon iconName={'warning'} />,
+  info: <ConfirmlyIcon iconName={'info'} />,
 };
 
 const defaultDialogConfig = {
   title: null,
-  type: "confirm",
+  type: 'confirm',
   actions: [],
   onConfirm: null,
   onCancel: null,
@@ -24,22 +24,13 @@ const defaultDialogConfig = {
 
 // useConfirmly Hook
 export const useConfirmly = () => {
-  const { modalState, setModalState, getModalOrder, clearModals } =
-    useConfirmlyContext();
+  const { modalState, setModalState, getModalOrder, clearModals } = useConfirmlyContext();
 
   // Function to Show ConfirmBox
-  const showConfirm = (description = "", dialogConfig = {}) => {
+  const showConfirm = (description = '', dialogConfig = {}) => {
     try {
       const configData = { ...defaultDialogConfig, ...dialogConfig };
-      const {
-        title,
-        icon,
-        actions,
-        onConfirm,
-        onCancel,
-        showIcon,
-        ...otherConfigs
-      } = configData;
+      const { title, icon, actions, onConfirm, onCancel, showIcon, ...otherConfigs } = configData;
       const dialogTitle = title || Literals.confirm;
       const dialogIcon = icon || dialogTypeWiseIcon.confirm;
 
@@ -56,7 +47,7 @@ export const useConfirmly = () => {
         config: otherConfigs,
       };
 
-      setModalState((prevDialogs) => ({
+      setModalState(prevDialogs => ({
         ...prevDialogs,
         [dialogData.id]: dialogData,
       }));
@@ -68,7 +59,7 @@ export const useConfirmly = () => {
   };
 
   // Function to show AlertBox
-  const showAlert = (description = "", dialogConfig = {}) => {
+  const showAlert = (description = '', dialogConfig = {}) => {
     try {
       const configData = { ...defaultDialogConfig, ...dialogConfig };
       const { title, icon, actions, showIcon, ...otherConfigs } = configData;
@@ -86,7 +77,7 @@ export const useConfirmly = () => {
         config: otherConfigs,
       };
 
-      setModalState((prevDialogs) => ({
+      setModalState(prevDialogs => ({
         ...prevDialogs,
         [dialogData.id]: dialogData,
       }));
@@ -98,7 +89,7 @@ export const useConfirmly = () => {
   };
 
   // Function to show InfoBox
-  const showInfo = (description = "", dialogConfig = {}) => {
+  const showInfo = (description = '', dialogConfig = {}) => {
     try {
       const configData = { ...defaultDialogConfig, ...dialogConfig };
       const { title, icon, actions, showIcon, ...otherConfigs } = configData;
@@ -116,7 +107,7 @@ export const useConfirmly = () => {
         config: otherConfigs,
       };
 
-      setModalState((prevDialogs) => ({
+      setModalState(prevDialogs => ({
         ...prevDialogs,
         [dialogData.id]: dialogData,
       }));
