@@ -1,0 +1,108 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+:root {
+  --cfm-btn-bg: #d4deff;
+  --cfm-btn-color: #0d134d;
+  --cfm-btn-borderRadius: 6px;
+  /* Modal */
+  --cfm-modal-bg: #ffffff;
+  --cfm-modal-borderRadius: 8px;
+  /* Header */
+  --cfm-header-fs: 1.2rem;
+  --cfm-header-color: #001f3f;
+  --cfm-header-padding: 10px 16px;
+  /* Content */
+  --cfm-content-fs: 1rem;
+  --cfm-content-color: #001f3f;
+  --cfm-content-padding: 25px 16px;
+  /* Action */
+  --cfm-actions-padding: 10px 16px;
+  --cfm-actions-gap: 8px;
+  /* Backdrop */
+  --cfm-backdrop-color: rgba(10, 10, 10, 0.53);
+  --cfm-backdrop-blur: 2px;
+  /* Divider */
+  --cfm-divider: #dadada;
+}
+
+.confirmly-btn {
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cfm-btn-bg);
+  color: var(--cfm-btn-color);
+  border-radius: var(--cfm-btn-borderRadius);
+  &.icon-btn {
+    height: 40px;
+    width: 40px;
+    padding: 0px;
+  }
+}
+
+.confirmly-modal-wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: var(--cfm-backdrop-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(var(--cfm-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--cfm-backdrop-blur));
+}
+
+.confirmly-modal {
+  background-color: var(--cfm-modal-bg);
+  border-radius: var(--cfm-modal-borderRadius);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+}
+
+.confirmly-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--cfm-header-color);
+  padding: var(--cfm-header-padding);
+  .typography {
+    font-size: var(--cfm-header-fs);
+    margin: 0px;
+  }
+  .close-icon {
+    background-color: lightgray;
+    height: 30px;
+    width: 30px;
+    img {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+.confirmly-modal .divider {
+  border-top: 1px solid var(--cfm-divider);
+  margin: 0px 0;
+}
+.confirmly-modal .modal-content {
+  font-size: var(--cfm-content-fs);
+  color: var(--cfm-content-color);
+  padding: var(--cfm-content-padding);
+  .confirmly-modal-content-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+}
+.confirmly-modal .modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--cfm-actions-gap);
+  padding: var(--cfm-actions-padding);
+}
