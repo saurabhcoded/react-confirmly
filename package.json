@@ -42,6 +42,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "react-hot-toast": "^2.5.2"
+    "react-hot-toast": "^2.5.2",
+    "zustand": "^5.0.3"
   }
 }

@@ -9,7 +9,6 @@ import { ConfirmlyDialogComponentProps } from './types';
 const ConfirmlyDialogComponent = React.memo(
   ({ modalState, modalConfig, setModalState }: ConfirmlyDialogComponentProps) => {
     const ModalsArray = React.useMemo(() => Object.entries(modalState), [modalState]);
-    console.log('ModalsArray', ModalsArray);
     const handleClose = React.useCallback(
       (modalKey: string) => () => {
         try {

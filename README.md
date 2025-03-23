@@ -102,6 +102,53 @@ function MyComponent() {
 }
 ```
 
+## Usage Without React Components
+
+You can also use Confirmly without React components by importing the `confirmly` object directly:
+
+```typescript
+import { confirmly } from 'react-confirmly';
+
+// Show confirmation dialog
+confirmly.confirm('Are you sure you want to delete this item?', {
+  title: 'Delete Item',
+  onConfirm: () => {
+    // Handle confirmation
+    confirmly.notify.success('Item deleted successfully!');
+  },
+  onCancel: () => {
+    confirmly.notify.error('Deletion cancelled');
+  },
+});
+
+// Show alert dialog
+confirmly.alert('This action cannot be undone!', {
+  title: 'Warning',
+  actions: [
+    { label: 'Proceed', onClick: () => console.log('Proceeded') },
+    { label: 'Cancel', onClick: () => console.log('Cancelled') },
+  ],
+});
+
+// Show info dialog
+confirmly.info('Your changes have been saved successfully.', {
+  title: 'Success',
+  showIcon: true,
+});
+
+// Show notifications
+confirmly.notify.success('Operation successful!');
+confirmly.notify.error('Something went wrong');
+
+// Get current modals state
+const modals = confirmly.getModals();
+
+// Clear all modals
+confirmly.clearModals();
+```
+
+Note: Even when using the non-React API, you still need to wrap your application with `ConfirmlyProvider` at the root level.
+
 ## Customization
 
 ### CSS Custom Properties

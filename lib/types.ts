@@ -1,6 +1,10 @@
 import React from 'react';
 import { ToasterProps } from 'react-hot-toast/dist';
 
+export type dialogType = 'confirm' | 'alert' | 'info';
+
+export type dialogTypeWiseIcon = Record<dialogType, React.ReactNode>;
+
 export type ConfirmlyDialogPositions =
   | 'top-left'
   | 'top-right'
@@ -13,6 +17,22 @@ export type ConfirmlyDialogPositions =
   | 'bottom-right';
 
 export interface SVGIconProps extends React.SVGProps<SVGSVGElement> {}
+
+export interface DialogConfig {
+  title?: string | null;
+  type?: 'confirm' | 'alert' | 'info';
+  actions?: DialogActionInterface[];
+  onConfirm?: () => void;
+  onCancel?: () => void;
+  showIcon?: boolean;
+  position?: ConfirmlyDialogPositions;
+  divider?: boolean;
+  dividerTop?: boolean;
+  dividerBottom?: boolean;
+  icon?: React.ReactNode;
+  description?: string;
+  order?: number;
+}
 
 export interface ConfirmlyProviderProps {
   disablePortal?: boolean;
@@ -68,7 +88,7 @@ export interface ConfirmlyState {
       id: string;
       title: string;
       description: string;
-      actions: React.ReactNode[];
+      actions: DialogActionInterface[];
       onConfirm?: () => void;
       onCancel?: () => void;
       icon: React.ReactNode;
