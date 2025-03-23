@@ -2,11 +2,12 @@ import React from 'react';
 import { ModalContext } from '../ConfirmlyProvider';
 
 export const useConfirmlyContext = () => {
-  const { modalState, setModalState, clearModals } = React.useContext(ModalContext);
+  const { modalState, modalConfig, setModalState, clearModals } = React.useContext(ModalContext);
 
   const getModalOrder = (): number => {
     try {
-      const lastModal = modalState?.[modalState.length - 1];
+      let modalsArray = Object.values(modalState);
+      const lastModal = modalsArray[modalsArray.length - 1];
       if (lastModal) return lastModal?.order + 1;
       return 1;
     } catch (err) {
@@ -14,5 +15,5 @@ export const useConfirmlyContext = () => {
     }
   };
 
-  return { modalState, setModalState, getModalOrder, clearModals };
+  return { modalState, modalConfig, setModalState, getModalOrder, clearModals };
 };

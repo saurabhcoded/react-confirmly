@@ -1,6 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
+  box-sizing: border-box;
 }
 :root {
   --cfm-btn-bg: #d4deff;
@@ -25,6 +26,8 @@
   --cfm-backdrop-blur: 2px;
   /* Divider */
   --cfm-divider: #dadada;
+  /* Screen Margin */
+  --cfm-screen-margin: 30px;
 }
 
 .confirmly-btn {
@@ -49,12 +52,51 @@
   width: 100vw;
   top: 0;
   left: 0;
+  padding: var(--cfm-screen-margin);
   background: var(--cfm-backdrop-color);
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(var(--cfm-backdrop-blur));
   -webkit-backdrop-filter: blur(var(--cfm-backdrop-blur));
+
+  /* Position */
+  &:has(.confirmly-modal.top-left) {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  &:has(.confirmly-modal.top-right) {
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  &:has(.confirmly-modal.top-center) {
+    justify-content: center;
+    align-items: flex-start;
+  }
+  &:has(.confirmly-modal.left) {
+    justify-content: flex-start;
+    align-items: center;
+  }
+  &:has(.confirmly-modal.center) {
+    justify-content: center;
+    align-items: center;
+  }
+  &:has(.confirmly-modal.right) {
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &:has(.confirmly-modal.bottom-left) {
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+  &:has(.confirmly-modal.bottom-right) {
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  &:has(.confirmly-modal.bottom) {
+    justify-content: center;
+    align-items: flex-end;
+  }
 }
 
 .confirmly-modal {

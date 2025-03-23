@@ -1,4 +1,15 @@
-# `react-confirmly`
+# <div align="center">`react-confirmly`</div>
+
+<div align="center">
+
+[![GitHub stars](https://img.shields.io/github/stars/saurabhcoded/react-confirmly?style=social)](https://github.com/saurabhcoded/react-confirmly/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/saurabhcoded/react-confirmly)](https://github.com/saurabhcoded/react-confirmly/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/saurabhcoded/react-confirmly)](https://github.com/saurabhcoded/react-confirmly/pulls)
+
+[![Suggest Feature](https://img.shields.io/badge/Suggest%20Feature-Open%20Issue-blue?style=for-the-badge&logo=github)](https://github.com/saurabhcoded/react-confirmly/issues/new?labels=enhancement&template=feature_request.md&title=Feature%20Request%3A%20)
+[![Report Bug](https://img.shields.io/badge/Report%20Bug-Open%20Issue-red?style=for-the-badge&logo=github)](https://github.com/saurabhcoded/react-confirmly/issues/new?labels=bug&template=bug_report.md&title=Bug%20Report%3A%20)
+
+</div>
 
 A lightweight and flexible confirmation dialog component for React applications. This package provides an easy-to-use solution for handling confirmation dialogs and notifications in your React projects.
 
@@ -9,8 +20,9 @@ A lightweight and flexible confirmation dialog component for React applications.
 - 🔄 Multiple dialog support
 - 🔔 Built-in toast notifications
 - ⚡ Lightweight and performant
-- �� Responsive design
+- 📱 Responsive design
 - 🎭 Multiple dialog types (Confirm, Alert, Info)
+- 🎨 CSS Custom Properties for easy theming
 
 ## Installation
 
@@ -19,6 +31,7 @@ npm install react-confirmly
 # or
 yarn add react-confirmly
 ```
+
 ## Live Demo
 
 Try React Confirmly in action with our interactive demo on Stackblitz:
@@ -85,6 +98,72 @@ function MyComponent() {
 }
 ```
 
+## Customization
+
+### CSS Custom Properties
+
+You can customize the appearance of the dialogs by overriding the CSS custom properties in your application:
+
+```css
+:root {
+  /* Button Styles */
+  --cfm-btn-bg: #d4deff;
+  --cfm-btn-color: #0d134d;
+  --cfm-btn-borderRadius: 6px;
+
+  /* Modal Styles */
+  --cfm-modal-bg: #ffffff;
+  --cfm-modal-borderRadius: 8px;
+
+  /* Header Styles */
+  --cfm-header-fs: 1.2rem;
+  --cfm-header-color: #001f3f;
+  --cfm-header-padding: 10px 16px;
+
+  /* Content Styles */
+  --cfm-content-fs: 1rem;
+  --cfm-content-color: #001f3f;
+  --cfm-content-padding: 25px 16px;
+
+  /* Action Buttons Styles */
+  --cfm-actions-padding: 10px 16px;
+  --cfm-actions-gap: 8px;
+
+  /* Backdrop Styles */
+  --cfm-backdrop-color: rgba(10, 10, 10, 0.53);
+  --cfm-backdrop-blur: 2px;
+
+  /* Divider Styles */
+  --cfm-divider: #dadada;
+
+  /* Screen Margin */
+  --cfm-screen-margin: 30px;
+}
+```
+
+### Dialog Positioning
+
+The dialogs can be positioned in different locations on the screen using the `position` prop:
+
+```jsx
+confirm('Are you sure?', {
+  position: 'top-left' | 'top-right' | 'top-center' |
+            'left' | 'center' | 'right' |
+            'bottom-left' | 'bottom-right' | 'bottom'
+});
+```
+
+Available positions:
+- `top-left`
+- `top-right`
+- `top-center`
+- `left`
+- `center` (default)
+- `right`
+- `bottom-left`
+- `bottom-right`
+- `bottom`
+
 ## API
 
 ### useConfirmly Hook
@@ -117,16 +196,49 @@ interface DialogConfig {
   divider?: boolean; // Show divider
   dividerTop?: boolean; // Show top divider
   dividerBottom?: boolean; // Show bottom divider
+  position?: string; // Dialog position
+  disablePortal?: boolean; // Disable portal rendering
+  actionsAlign?: 'left' | 'center' | 'right'; // Align action buttons
 }
 ```
 
-### Default Dialog Types
+### ConfirmlyProvider Props
 
-Each dialog type comes with its own default icon and title:
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Child components to wrap |
+| `notifyProps` | `ToasterProps` | `{}` | Props to pass to the toast notification component. See [react-hot-toast options](https://react-hot-toast.com/docs/toast) |
+| `disablePortal` | `boolean` | `false` | Whether to disable portal rendering for dialogs |
+| `dialogPosition` | `'top-left' \| 'top-right' \| 'top-center' \| 'left' \| 'center' \| 'right' \| 'bottom-left' \| 'bottom-right' \| 'bottom-center'` | `'center'` | Default position for all dialogs |
+| `showIcons` | `boolean` | `true` | Whether to show icons in dialogs by default |
 
-- **Confirm Dialog**: Default icon for confirmation actions
-- **Alert Dialog**: Warning icon for important alerts
-- **Info Dialog**: Information icon for general messages
+Example usage with props:
+
+```jsx
+import { ConfirmlyProvider } from 'react-confirmly';
+
+function App() {
+  return (
+    <ConfirmlyProvider
+      disablePortal={false}
+      dialogPosition="top-right"
+      showIcons={true}
+      notifyProps={{
+        position: 'top-right',
+        duration: 3000,
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      }}
+    >
+      {/* Your app components */}
+    </ConfirmlyProvider>
+  );
+}
+```
+
+The provider accepts these props to configure the global behavior of all dialogs. Individual dialog configurations can override these settings when needed.
 
 ### Toast Notifications
 
@@ -164,13 +276,6 @@ notify.success('Operation successful!', {
   duration: 3000,
 });
 ```
-
-### ConfirmlyProvider Props
-
-| Prop          | Type        | Description                                       |
-| ------------- | ----------- | ------------------------------------------------- |
-| `notifyProps` | `object`    | Props to pass to the toast notification component |
-| `children`    | `ReactNode` | Child components to wrap                          |
 
 ## License
 
